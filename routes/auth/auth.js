@@ -9,7 +9,7 @@ router.post("/login", (req, res) => {
   // demo user credentials
   if (email === "user@example.com" && password === "12345") {
 
-  // set a 15 minutes cookies session (900000 ms
+  // set a 15 minutes cookies session (900000 ms)
     res.cookie('user', email, { maxAge: 900000, httpOnly: true });
     // send success response  
     return res.json({ success: true });
@@ -27,7 +27,7 @@ router.post("/login", (req, res) => {
     return res.json({ success: false, message: "Password too short" });
   }
 
-  // In a real app, store user data in a database
+  //in a real app, store user data in a database
   res.json({ success: true });
 });
 

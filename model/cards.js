@@ -161,3 +161,22 @@ const cards = [
     },
 
 ]
+
+// Get card by ID
+const getCardById = (id) => {
+    return cards.find(card => card.id === parseInt(id));
+  };
+  
+  // Get similar cards by category
+  const getSimilarCards = (id) => {
+    const card = getCardById(id);  // Get the current card by ID
+  
+    if (!card)
+         return [];  
+    //cards with the same category excluding the current card)
+    return cards.filter(similarCard => 
+      similarCard.id !== id && similarCard.category === card.category
+    ).slice(0, 3);  // Limit to 3 similar cards
+  };
+  
+  module.exports = { getAllCards, getCardById, getSimilarCards };
