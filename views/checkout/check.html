@@ -179,13 +179,12 @@
       }
     ];
 
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const shipping = subtotal > 100 ? 0 : 10;   //if price or total is more than 100 free shipping
-    const total = subtotal + shipping;
+    const { subtotal, shipping, total } = calculateTotals(req.session.cart || []);
 
-    document.getElementById("subtotal").textContent = `$${subtotal.toLocaleString()}`;
-    document.getElementById("shipping").textContent = shipping === 0 ? "Free" : `$${shipping}`;
-    document.getElementById("total").textContent = `$${total.toLocaleString()}`;
+document.getElementById("subtotal").textContent = `${subtotal.toLocaleString()}`; //converst number to string with commas
+document.getElementById("shipping").textContent = shipping === 0 ? "Free" : `${shipping}`;
+document.getElementById("total").textContent = `${total.toLocaleString()}`;
+
   </script>
 </body>
 </html>
