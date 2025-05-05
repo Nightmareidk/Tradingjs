@@ -54,7 +54,6 @@ router.post("/add", (req, res) => {
   res.redirect("/cart")
 })
 
-// Update cart item quantity
 router.post("/update/:id", (req, res) => {
   const itemId = Number.parseInt(req.params.id)
   const quantity = Number.parseInt(req.body.quantity)
