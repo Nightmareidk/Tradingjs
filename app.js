@@ -23,3 +23,31 @@ app.use('/auth', authRoutes);
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
+
+//express app
+
+const express = require('express');
+const session = require('express-session');
+const app = express();
+
+// Middleware to serve static files
+app.use(express.static('public')); // Serving files from the 'public' folder
+
+// Use EJS for rendering views
+app.set('view engine', 'ejs'); // Tells Express to use EJS templates
+
+// Session management
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
+
+// Import and use the checkout route
+const checkoutRoutes = require('./routes/checkout');
+app.use('/checkout', checkoutRoutes);
+
+// Start the server
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});

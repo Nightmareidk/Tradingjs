@@ -1,0 +1,131 @@
+/* Body and Global Styles */
+body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    
+    /* Header and Footer */
+    header, footer {
+      background: #f3f3f3;
+      padding: 1rem;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: #a7abe6;
+    }
+    
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Checkout Grid */
+    .checkout-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .form-section {
+      flex: 2;
+    }
+    
+    .summary-section {
+      flex: 1;
+    }
+    
+    /* Card Styles */
+    .card {
+      background: white;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      margin-bottom: 1.5rem;
+    }
+    
+    .card h2 {
+      margin-top: 0;
+    }
+    
+    /* Input Fields */
+    input[type="text"] {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    
+    /* Checkbox and Label */
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Cart Item Styles */
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .cart-item img {
+      width: 64px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #eee;
+    }
+    
+    /* Summary Section */
+    .summary p {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5rem 0;
+    }
+    
+    .summary .total {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    
+    /* Button */
+    .btn {
+      display: block;
+      width: 90%;
+      background: rgb(65, 77, 241);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    
+    /* Footer Navigation */
+    footer nav {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    footer a {
+      text-decoration: none;
+      color: #7c93df;
+    }
+    

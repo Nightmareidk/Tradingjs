@@ -1,0 +1,73 @@
+<!-- views/checkout/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo">CardTrader</a>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <a href="/cart" class="back-link">← Back to cart</a>
+    <h1>Checkout</h1>
+
+    <div class="checkout-grid">
+      <section class="form-section">
+        <div class="card">
+          <h2>Delivery Address</h2>
+          <form action="/checkout" method="POST">
+            <input type="text" name="firstName" placeholder="First name" required>
+            <input type="text" name="lastName" placeholder="Last name" required>
+            <input type="text" name="address" placeholder="Address" required>
+            <input type="text" name="city" placeholder="City" required>
+            <input type="text" name="country" placeholder="Country" required>
+            <button type="submit">Continue to Payment</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="summary-section">
+        <div class="card">
+          <h2>Order Summary</h2>
+          <% cart.forEach(item => { %>
+            <div class="cart-item">
+              <img src="<%= item.image %>" alt="<%= item.name %>">
+              <div>
+                <p><%= item.name %></p>
+                <p>Qty: <%= item.quantity %></p>
+                <p>$<%= item.price * item.quantity %></p>
+              </div>
+            </div>
+          <% }) %>
+
+          <hr />
+          <div class="summary">
+            <p>Subtotal: $<span id="subtotal"><%= subtotal.toLocaleString() %></span></p>
+            <p>Shipping: <span id="shipping"><%= shipping === 0 ? 'Free' : shipping %></span></p>
+            <p class="total">Total: $<span id="total"><%= total.toLocaleString() %></span></p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2024 CardTrader. All rights reserved.</p>
+      <nav>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
+
