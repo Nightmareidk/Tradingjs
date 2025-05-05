@@ -26,7 +26,7 @@ router.get("/:id", (req, res) => {
     title: `${card.name} - CardTrader`,
     card,
     similarCards,
-  });
+      });
 });
 
 module.exports = router;
