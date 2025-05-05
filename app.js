@@ -47,7 +47,10 @@ app.use(session({
 const checkoutRoutes = require('./routes/checkout');
 app.use('/checkout', checkoutRoutes);
 
-// Start the server
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000');
 });
+
+//collections route
+const collectionsRoutes = require("./routes/collections"); // Import your collections routes
+app.use("/collections", collectionsRoutes); 

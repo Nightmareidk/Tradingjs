@@ -8,19 +8,18 @@
 </head>
 <body>
   <header>
-    <h1><%= category.name %> Cards</h1> <!-- Title with the category's name -->
+    <h1><%= title %></h1> <!-- Displays "Collections - CardTrader" -->
   </header>
 
   <main class="container py-5">
     <div class="row">
-      <% cards.forEach(card => { %> <!-- Loop through the cards of the category -->
+      <% categories.forEach(category => { %> <!-- Loop through all categories -->
         <div class="col-md-4 mb-4">
           <div class="card">
-            <img src="<%= card.image %>" class="card-img-top" alt="<%= card.name %>">
             <div class="card-body">
-              <h5 class="card-title"><%= card.name %></h5>
-              <p class="card-text">$<%= card.price %></p>
-              <a href="/cards/<%= card.id %>" class="btn btn-primary">View Details</a>
+              <h5 class="card-title"><%= category.name %></h5> <!-- Display category name -->
+              <p class="card-text"><%= category.description %></p> <!-- Display category description -->
+              <a href="/collections/<%= category.id %>" class="btn btn-primary">View Cards</a> <!-- Link to show cards of this category -->
             </div>
           </div>
         </div>
@@ -33,3 +32,4 @@
   </footer>
 </body>
 </html>
+            
