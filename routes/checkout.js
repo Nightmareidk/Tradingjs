@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
     title: "Checkout - CardTrader",
     cart,
     subtotal,
-    shipping,
+    shipping,     
     total,
   })
 })
@@ -31,6 +31,7 @@ router.post("/process", (req, res) => {
 
   res.redirect(`/checkout/confirmation?orderId=${orderId}`)
 })
+
 
 // Order confirmation
 router.get("/confirmation", (req, res) => {
