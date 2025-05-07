@@ -1,3 +1,4 @@
+
 /*ran code for syntax errors chatgpt added this line of code as well  this event listener automatically closes
  an alert after a few minutes, but i think its unnesessary for that many detail and i commented it out but you guy can
  check it out*/
