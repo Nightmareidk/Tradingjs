@@ -159,5 +159,68 @@ const cards = [
         ],
         inStock: true,
     },
-
 ]
+    const categories = [
+        
+        {
+            id: "Pokemon",
+            name: "Pokémon",
+            image: "https://moxiecardshop.com/cdn/shop/collections/PKMN-How-To-Get-Pokemon-Cards-Graded.webp?v=1688356551",
+            count: 8,
+          },
+          {
+            id: "magic",
+            name: "Magic: The Gathering",
+            image: "https://upload.wikimedia.org/wikipedia/en/a/aa/Magic_the_gathering-card_back.jpg",
+            count: 0,
+          },
+          {
+            id: "yugioh",
+            name: "Yu-Gi-Oh!",
+            image: "https://m.media-amazon.com/images/I/81X0qR7QzIL._AC_UF1000,1000_QL80_.jpg",
+            count: 0,
+          },
+          {
+            id: "sports",
+            name: "Sports Cards",
+            image: "https://m.media-amazon.com/images/I/71S7fEIqMoL.jpg",
+            count: 0,
+          },
+    ]
+    
+    //get all cards 
+    exports.getAllCards = () => {
+        return cards
+      }
+    //get card by specific id
+    exports.getCardById = (id) => {
+        return cards.find((card) => card.id === Number.parseInt(id));
+      };
+
+    //feature cards
+    exports.getFeaturedCards = () => {
+        return cards.slice(0, 4)
+      }
+
+      // Get similar cards (cards in the same category)
+exports.getSimilarCards = (cardId) => {
+    const card = this.getCardById(cardId)
+    if (!card) return []
+  
+    return cards.filter((c) => c.id !== Number.parseInt(cardId) && c.category === card.category).slice(0, 4)
+  }
+  
+  // Get all categories
+  exports.getAllCategories = () => {
+    return categories
+  }
+  
+  // Get cards by category
+  exports.getCardsByCategory = (categoryId) => {
+    return cards.filter((card) => {
+      const normalizedCategory = card.category.toLowerCase().replace(/[^a-z0-9]/g, "")
+      return normalizedCategory === categoryId
+    })
+  }
+  
+      
