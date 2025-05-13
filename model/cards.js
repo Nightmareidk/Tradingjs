@@ -221,7 +221,7 @@ const getCardById = (id) => {
         return cards.slice(0, 4)
       }
 
-      // Get similar cards (cards in the same category)
+      // Get similar cards of same category
 exports.getSimilarCards = (cardId) => {
     const card = this.getCardById(cardId)
     if (!card) return []
@@ -229,12 +229,12 @@ exports.getSimilarCards = (cardId) => {
     return cards.filter((c) => c.id !== Number.parseInt(cardId) && c.category === card.category).slice(0, 4)
   }
   
-  // Get all categories
+  // get all categories
   exports.getAllCategories = () => {
     return categories
   }
   
-  // Get cards by category
+  // get cards by category
   exports.getCardsByCategory = (categoryId) => {
     return cards.filter((card) => {
       const normalizedCategory = card.category.toLowerCase().replace(/[^a-z0-9]/g, "")
