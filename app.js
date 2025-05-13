@@ -52,14 +52,14 @@ const cardsRoutes = require('./routes/cards');
 const cartRoutes = require('./routes/cart');
 const checkoutRoutes = require('./routes/checkout');
 const authRoutes = require('./routes/auth');
-const collectionsRoutes = require('./routes/collections');
+const collectionsRoutes = require('./routes/collection');
 
 // Use the routes
 app.use('/', indexRoutes);
 app.use('/cards', cardsRoutes);
 app.use('/cart', cartRoutes);
 app.use('/checkout', checkoutRoutes);
-app.use('/collections', collectionsRoutes);
+app.use('/collection', collectionsRoutes);
 app.use('/auth', authRoutes);  // For login/signup routes
 
 /* NOT SO IMPORTANT (OPTIONAL)

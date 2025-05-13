@@ -241,5 +241,11 @@ exports.getSimilarCards = (cardId) => {
       return normalizedCategory === categoryId
     })
   }
+  function getAllCards() {
+  return [
+    { id: 1, name: "Blue-Eyes White Dragon", category: "Dragon" },
+    { id: 2, name: "Dark Magician", category: "Spellcaster" },
+  ];
+}
   
       

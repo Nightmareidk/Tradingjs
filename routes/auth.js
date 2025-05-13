@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+
 
 // login demo
 
@@ -18,17 +20,29 @@ router.post("/login", (req, res) => {
   res.json({ success: false, message: "Invalid credentials" });
 });
 
-// signup demo
-  router.post("/signup", (req, res) => {
+router.post("/signup", (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
-  // Simple demo validation
   if (password.length < 6) {
     return res.json({ success: false, message: "Password too short" });
   }
 
-  //in a real app, store user data in a database
-  res.json({ success: true });
+  const userData = {
+    firstName,
+    lastName,
+    email,
+    password
+  };
+
+  // Append user data as JSON string to users.txt
+  try {
+    fs.appendFileSync('users.txt', JSON.stringify(userData) + '\n');
+    res.json({ success: true, message: "User registered and saved to file" });
+  } catch (error) {
+    console.error("Failed to write file:", error);
+    res.status(500).json({ success: false, message: "Error saving user data" });
+  }
 });
+
 
 module.exports = router;

@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const cardsModel = require("../models/cards");  
+const cardsModel = require("../model/cards");  
 
 // this code includes routes to get all categories and to get cards by category
 
 // get all categories
 router.get("/", (req, res) => {
   const categories = cardsModel.getAllCategories();  
-  res.render("collections/index", {  
-    title: "Collections - CardTrader",
+  res.render("collection/index", {  
+    title: "Collection - CardTrader",
     categories,  
   });
 });
@@ -25,7 +25,7 @@ router.get("/:id", (req, res) => {
     return res.redirect("/collections");
   }
 
-  res.render("collections/show", {     //renders show.ejs
+  res.render("collection/show", {     //renders show.ejs
     title: `${category.name} Cards - CardTrader`,  
     cards,  
     category, 

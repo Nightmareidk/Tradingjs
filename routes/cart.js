@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const cardsModel = require("../models/cards")
+const cardsModel = require("../model/cards.js")
 
 // View cart
 router.get("/", (req, res) => {
