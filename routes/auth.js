@@ -1,48 +1,75 @@
-const express = require('express');
-const router = express.Router();
-const fs = require('fs');
+const express = require("express")
+const router = express.Router()
+const usersModel = require("../models/users")
+const path = require("path")
 
+// Login page
+router.get("/login", (req, res) => {
+  res.render("auth/login", {
+    title: "Login - CardTrader",
+  })
+})
 
-// login demo
-
+// Process login
 router.post("/login", (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body
 
-  // demo user credentials
-  if (email === "user@example.com" && password === "12345") {
+  const result = usersModel.validateCredentials(email, password)
 
-  // set a 15 minutes cookies session (900000 ms)
-    res.cookie('user', email, { maxAge: 900000, httpOnly: true });
-    // send success response  
-    return res.json({ success: true });
+  if (result.success) {
+    // Store user info in session (excluding password)
+    const { password, ...userInfo } = result.user
+    req.session.user = userInfo
+    req.session.isAuthenticated = true
+    req.session.success_msg = "You have successfully logged in"
+    res.redirect("/")
+  } else {
+    req.session.error_msg = result.message
+    res.redirect("/login")
   }
+})
 
-  res.json({ success: false, message: "Invalid credentials" });
-});
+// Signup page
+router.get("/signup", (req, res) => {
+  res.render("auth/signup", {
+    title: "Sign Up - CardTrader",
+  })
+})
 
+// Process signup
 router.post("/signup", (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, confirmPassword } = req.body
 
-  if (password.length < 6) {
-    return res.json({ success: false, message: "Password too short" });
+  // Basic validation
+  if (password !== confirmPassword) {
+    req.session.error_msg = "Passwords do not match"
+    return res.redirect("/signup")
   }
 
-  const userData = {
+  // Create user object
+  const newUser = {
     firstName,
     lastName,
     email,
-    password
-  };
-
-  // Append user data as JSON string to users.txt
-  try {
-    fs.appendFileSync('users.txt', JSON.stringify(userData) + '\n');
-    res.json({ success: true, message: "User registered and saved to file" });
-  } catch (error) {
-    console.error("Failed to write file:", error);
-    res.status(500).json({ success: false, message: "Error saving user data" });
+    password,
   }
-});
 
+  // Add user to storage
+  const result = usersModel.addUser(newUser)
 
-module.exports = router;
+  if (result.success) {
+    req.session.success_msg = "Account created successfully. You can now log in"
+    res.redirect("/login")
+  } else {
+    req.session.error_msg = result.message || "Error creating account"
+    res.redirect("/signup")
+  }
+})
+
+// Logout
+router.get("/logout", (req, res) => {
+  req.session.destroy()
+  res.redirect("/")
+})
+
+module.exports = router

@@ -1,0 +1,10 @@
+[
+  {
+    "firstName": "zille",
+    "lastName": "Ghufran",
+    "email": "testing@gmail.com",
+    "password": "test123",
+    "id": "1747173850756",
+    "createdAt": "2025-05-13T22:04:10.756Z"
+  }
+]
