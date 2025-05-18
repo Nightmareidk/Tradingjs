@@ -62,6 +62,8 @@ app.use('/checkout', checkoutRoutes);
 app.use('/collection', collectionsRoutes);
 app.use('/auth', authRoutes);  // For login/signup routes
 
+
+
 /* NOT SO IMPORTANT (OPTIONAL)
 
 // 404 error handler (if no routes match)

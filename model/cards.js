@@ -187,65 +187,66 @@ const cards = [
             count: 0,
           },
     ]
-    
-    //get all cards 
-    exports.getAllCards = () => {
-        return cards
-      }
-    //get card by specific id
-    exports.getCardById = (id) => {
-        return cards.find((card) => card.id === Number.parseInt(id));
-      };
+    // get all cards 
+const getAllCards = () => {
+  return cards;
+};
 
-
-// Get card by ID
+// get card by specific id
 const getCardById = (id) => {
-    return cards.find(card => card.id === parseInt(id));
-  };
-  
-  // Get similar cards by category
-  const getSimilarCards = (id) => {
-    const card = getCardById(id);  // Get the current card by ID
-  
-    if (!card)
-         return [];  
-    //cards with the same category excluding the current card)
-    return cards.filter(similarCard => 
-      similarCard.id !== id && similarCard.category === card.category
-    ).slice(0, 3);  // Limit to 3 similar cards
-  };
-  
-  module.exports = { getAllCards, getCardById, getSimilarCards };
-    //feature cards
-    exports.getFeaturedCards = () => {
-        return cards.slice(0, 4)
-      }
+  return cards.find((card) => card.id === Number.parseInt(id));
+};
 
-      // Get similar cards of same category
-exports.getSimilarCards = (cardId) => {
-    const card = this.getCardById(cardId)
-    if (!card) return []
-  
-    return cards.filter((c) => c.id !== Number.parseInt(cardId) && c.category === card.category).slice(0, 4)
-  }
-  
-  // get all categories
-  exports.getAllCategories = () => {
-    return categories
-  }
-  
-  // get cards by category
-  exports.getCardsByCategory = (categoryId) => {
-    return cards.filter((card) => {
-      const normalizedCategory = card.category.toLowerCase().replace(/[^a-z0-9]/g, "")
-      return normalizedCategory === categoryId
-    })
-  }
-  function getAllCards() {
+// get featured cards
+const getFeaturedCards = () => {
+  return cards.slice(0, 4);
+};
+
+// get similar cards of same category
+const getSimilarCards = (cardId) => {
+  const card = getCardById(cardId);
+  if (!card) return [];
+
+  return cards
+    .filter(
+      (c) => c.id !== Number.parseInt(cardId) && c.category === card.category
+    )
+    .slice(0, 4);
+};
+
+// get all categories
+const getAllCategories = () => {
+  return categories;
+};
+
+// get cards by category
+const getCardsByCategory = (categoryId) => {
+  return cards.filter((card) => {
+    const normalizedCategory = card.category.toLowerCase().replace(/[^a-z0-9]/g, "");
+    return normalizedCategory === categoryId;
+  });
+};
+
+function getAllCardsTest() {
   return [
     { id: 1, name: "Blue-Eyes White Dragon", category: "Dragon" },
     { id: 2, name: "Dark Magician", category: "Spellcaster" },
   ];
 }
-  
+
+module.exports = {
+  // Magid: this part kept giving me error and collection page wouldn't show up, 
+  // I tried removing the earlier export line and writing a new one all the way down 
+  // so it stops conflicting with the others
+  getAllCards,
+  getCardById,
+  getFeaturedCards,
+  getSimilarCards,
+  getAllCategories,
+  getCardsByCategory
+};
+
+//Magid: I removed the exports later on and turned them into const functions since the previous solution
+//did not suffice
+
       

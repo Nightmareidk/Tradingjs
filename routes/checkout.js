@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
+const calculateTotals = require('./calculatetotal'); //Magid: had to add this code to reroute the website to the function
 
-// Checkout page
 router.get("/", (req, res) => {
   const cart = req.session.cart || []
 

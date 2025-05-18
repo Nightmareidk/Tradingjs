@@ -7,7 +7,7 @@ const cardsModel = require("../model/cards");
 // get all categories
 router.get("/", (req, res) => {
   const categories = cardsModel.getAllCategories();  
-  res.render("collection/index", {  
+  res.render("collections/index", {  
     title: "Collection - CardTrader",
     categories,  
   });
@@ -22,7 +22,7 @@ router.get("/:id", (req, res) => {
 
   if (!category) {
     req.session.error_msg = "Category not found"; 
-    return res.redirect("/collections");
+    return res.redirect("/collection");
   }
 
   res.render("collection/show", {     //renders show.ejs

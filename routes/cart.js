@@ -1,12 +1,13 @@
 const express = require("express")
 const router = express.Router()
 const cardsModel = require("../model/cards.js")
+const calculateTotal = require('./calculateTotal.js');
 
 // View cart
 router.get("/", (req, res) => {
   const cart = req.session.cart || []
 
-const { subtotal, shipping, total } = calculateTotals(req.session.cart || [])
+const { subtotal, shipping, total } = calculateTotal(req.session.cart || [])
 
   res.render("cart/index", {
     title: "Your Cart - CardTrader",

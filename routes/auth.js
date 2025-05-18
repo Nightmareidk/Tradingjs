@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const usersModel = require("../models/users")
+const usersModel = require("../model/users")
 const path = require("path")
 
 // Login page

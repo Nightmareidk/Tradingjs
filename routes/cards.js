@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const cardsModel = require('../model/cards');  // Importing the cards model from the 'model' folder
-
-// Get all cards
+const cardsModel = require('../model/cards');
 router.get("/", (req, res) => {
-  const cards = cardsModel.getAllCards();  // Fetch all cards from the cards model
+  let cards = cardsModel.getAllCards();  // Magid: Zille had this as a const I changed it to let so the next line of code could work for me
+  cards = cards.map(card => {  
+  return {
+    ...card,
+    price: typeof card.price === "number" ? card.price : 0
+  };
+});  //Magid: had chatgpt's help with the previous function because I kept running into an error where the site crashes, this stopped it from doing that
   res.render("cards/index", {  // Rendering the 'cards/index.ejs' view in the 'views/cards' folder
     title: "Browse Cards - CardTrader",
     cards,
